@@ -3,11 +3,42 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ThemeProvider, createTheme } from '@mui/material';
+import {
+  createBrowserRouter,
+  RouterProvider
+} from 'react-router-dom';
+import Products from './Components/Products';
+
+
+const router = createBrowserRouter([
+  {
+    path:"/",
+    element: <App/>
+  },
+  {
+    path:"/products",
+    element: <Products />
+  }
+])
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#06594f"
+    },
+    secondary: {
+      main: "#6A6861"
+    },
+  },
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+    <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>
 );
 
